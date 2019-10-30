@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_30_121547) do
+ActiveRecord::Schema.define(version: 2019_10_30_123226) do
 
   create_table "courses", force: :cascade do |t|
     t.string "name"
@@ -19,6 +19,15 @@ ActiveRecord::Schema.define(version: 2019_10_30_121547) do
     t.string "level"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "tag_id"
+    t.index ["tag_id"], name: "index_courses_on_tag_id"
+  end
+
+  create_table "courses_tags", id: false, force: :cascade do |t|
+    t.integer "course_id", null: false
+    t.integer "tag_id", null: false
+    t.index ["course_id", "tag_id"], name: "index_courses_tags_on_course_id_and_tag_id"
+    t.index ["tag_id", "course_id"], name: "index_courses_tags_on_tag_id_and_course_id"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -37,5 +46,6 @@ ActiveRecord::Schema.define(version: 2019_10_30_121547) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "courses", "tags"
   add_foreign_key "tags", "courses"
 end
