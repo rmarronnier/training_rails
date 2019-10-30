@@ -1,6 +1,6 @@
 require "administrate/base_dashboard"
 
-class CourseDashboard < Administrate::BaseDashboard
+class TagDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -8,12 +8,10 @@ class CourseDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    tags: Field::HasMany,
+    courses: Field::HasMany,
     id: Field::Number,
     name: Field::String,
-    description: Field::Text,
-    price: Field::Number,
-    level: Field::String,
+    course_id: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -24,21 +22,19 @@ class CourseDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
-  tags
+  courses
   id
   name
-  description
+  course_id
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
-  tags
+  courses
   id
   name
-  description
-  price
-  level
+  course_id
   created_at
   updated_at
   ].freeze
@@ -47,11 +43,9 @@ class CourseDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
-  tags
+  courses
   name
-  description
-  price
-  level
+  course_id
   ].freeze
 
   # COLLECTION_FILTERS
@@ -66,10 +60,10 @@ class CourseDashboard < Administrate::BaseDashboard
   #   }.freeze
   COLLECTION_FILTERS = {}.freeze
 
-  # Overwrite this method to customize how courses are displayed
+  # Overwrite this method to customize how tags are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(course)
-  #   "Course ##{course.id}"
+  # def display_resource(tag)
+  #   "Tag ##{tag.id}"
   # end
 end
