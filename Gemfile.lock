@@ -71,6 +71,7 @@ GEM
       selectize-rails (~> 0.6)
     autoprefixer-rails (9.7.0)
       execjs
+    bcrypt (3.1.13)
     bindex (0.8.1)
     bootsnap (1.4.5)
       msgpack (~> 1.0)
@@ -238,6 +239,7 @@ PLATFORMS
 
 DEPENDENCIES
   administrate
+  bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
